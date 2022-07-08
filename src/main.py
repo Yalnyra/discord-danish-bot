@@ -14,7 +14,6 @@ client = discord.Client()
 env_role_list = json.loads(os.environ['ROLE_IDS_LIST'])
 env_user_list = json.loads(os.environ['USER_IDS_LIST'])
 env_gif_list = json.loads(os.environ['GIF_LIST'])
-nerd_emoji = client.emojis.cache.get("994983944669892619")
 
 
 @client.event
@@ -47,7 +46,6 @@ async def on_message(message):
                 for user_role in member.roles:
                     for marked_role_id in env_role_list:
                         if user_role.id == marked_role_id:
-                            await message.add_reaction(nerd_emoji)
                             await message.reply(random.choice(env_gif_list),
                                                 mention_author=True)
                             print(member.display_name + " got pinged!")
@@ -56,7 +54,6 @@ async def on_message(message):
     for user_role in member.roles:
         for marked_role_id in env_role_list:
             if user_role.id == marked_role_id:
-                await message.add_reaction(nerd_emoji)
                 await message.reply(random.choice(env_gif_list),
                                     mention_author=True)
                 print(member.display_name + " got pinged!")
